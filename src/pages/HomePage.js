@@ -15,19 +15,16 @@ class HomePage extends Component {
     }
 
     changeType(type) {
-        console.log(type);
         changeDeviceType(type);
         let that = this;
         setTimeout(() => {
             that.setState({
                 type: type
             });
-            console.log(that.state);            
         }, 0);
     }
 
     render() {
-        console.log('State: ', this.props.testStore);
         return (
             <div className="App__homePage">
                 <Grid columns={12} >

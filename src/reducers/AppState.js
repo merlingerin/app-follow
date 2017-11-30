@@ -1,13 +1,13 @@
 
-let InitialState = {
+let initialState = {
     deviceType: 'iPhone'
 };
 
-const AppState = ( state = InitialState, action ) => {
+export default ( state = initialState, action ) => {
     switch(action.type) {
         case('CHANGE_DEVICE_TYPE'):
             return {
-                ...InitialState,
+                ...state,
                 deviceType: action.payload
             }
         break;
@@ -15,5 +15,3 @@ const AppState = ( state = InitialState, action ) => {
             return state;
     }
 }
-
-export default AppState;

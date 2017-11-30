@@ -2,13 +2,8 @@ import React from 'react'
 import { Button } from 'semantic-ui-react'
 
 const ToggleTypeButton = (props) => {
-    let type = props.type,
-        button;
-    console.log(props);
-    const handleClick = (type) => {
-        console.log(type);
-        // return props.toggleType(type);
-    }
+    let type = props.type;
+
     if(type === 'iPhone') {
         return (
             <Button.Group className="button-toggle button-toggle--type">
