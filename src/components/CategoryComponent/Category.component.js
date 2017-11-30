@@ -1,7 +1,8 @@
 import React from 'react';
+import { AppCard } from '../components.index';
 
 const CategoryComponent = (props) => {
-    console.log(props);
+    console.log('PROPS', props);
     let items = props["items"] || [];
     if( items.length > 0 ) {
         return (
@@ -13,13 +14,7 @@ const CategoryComponent = (props) => {
                 <div className="CategoryComponent__list">
                     {
                         items.map( ( item, idx ) => (
-                            <div key={ item.id || idx } className="CategoryComponent__item">
-                                <i className="item__img-wrapper">
-                                    <img src={ item.img } />
-                                </i>
-                                <p className="item__title">{ item.title }</p>
-                                <cite className="item__category">{item.category }</cite>
-                            </div>
+                            <AppCard key={idx} { ...item } />
                         ))
                     }
                 </div>
