@@ -1,15 +1,28 @@
-import axios from 'axios';
+import { 
+    FETCH_APPS_START,
+    FETCH_APPS_SUCCESS,
+    FETCH_APPS_FAILURE,
+    CHANGE_DEVICE_TYPE
+ } from './actionsTypes';
+ import { fetchPhones as fetchPhonesApi } from '../api/index';
 
-export const CHANGE_DEVICE_TYPE = 'CHANGE_DEVICE_TYPE';
+export const fetchApps = (type) =>  async dispatch => {
+    dispatch({type: FETCH_APPS_START});
 
-export function changeDeviceType(type) {
-    let data;
-    if(type === 'iPhone') {
-        axios.get('/data/iPhone.json')
-        .then((res) => { console.log('iPhone: ', res); });    
-    } else if(type === 'iPad') {
-        axios.get('/data/iPad.json')
-        .then((res) => { console.log('iPhone: ', res); }); 
+    try {
+        let data = await fetchPhonesApi(type);
+        dispatch({
+            type: FETCH_APPS_SUCCESS,
+            payload: data
+        })
+    } catch(err) {
+        dispatch({
+            type: FETCH_APPS_FAILURE,
+            payload: err
+        })
     }
-    return { action: CHANGE_DEVICE_TYPE, payload: type }
+}
+
+export const changeType = (type) => dispatch => {
+    dispatch({type: CHANGE_DEVICE_TYPE, payload: type})
 }

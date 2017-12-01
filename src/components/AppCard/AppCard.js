@@ -1,16 +1,21 @@
 import React from 'react';
 
-export const AppCard = (props) => {
-    console.log('====================================');
-    console.log('APP CARD PROPS', props);
-    console.log('====================================');
+const AppCard = (props) => {
     return (
-        <div className="CategoryComponent__item">
-            {/* <i className="item__img-wrapper">
-                <img src={ props.img } />
+        <a href={props.link} target="_blank" className={`CategoryComponent__item ${props.cardWidth}`}>
+            <i className="item__img-wrapper">
+                <img src={ props.image } />
             </i>
             <p className="item__title">{ props.title }</p>
-            <cite className="item__category">{props.category }</cite> */}
-        </div>
+            <p className="item__category">{props.category }</p>
+            {
+                props.showPrice ?
+                <p className="item__price">{props.price != 0 ? `${props.price}$` : 'free' }</p> :
+                ''
+
+            }
+        </a>
     );
 }
+
+export default AppCard;
