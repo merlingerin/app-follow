@@ -3,4 +3,8 @@ export { default as MainCarusel } from './MainCarusel/MainCarusel';
 export { default as CategoryComponent } from './CategoryComponent/Category.component';
 export { default as AppCard } from './AppCard/AppCard';
 export { default as Sidebar } from './Sidebar/Sidebar';
+export { default as SidebarCategory } from './Sidebar/SidebarCategory/SidebarCategory';
+export { default as SidebarAppCard } from './Sidebar/SidebarAppCard/SidebarAppCard';
 export { default as AppsModal } from './Modal/Modal';
+export { default as BannersContainer } from './BannersContainer/BannersContainer';
+export { default as BannerCard } from './BannerCard/BannerCard';

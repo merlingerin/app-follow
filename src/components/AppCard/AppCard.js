@@ -4,7 +4,7 @@ const AppCard = (props) => {
     return (
         <a href={props.link} target="_blank" className={`CategoryComponent__item ${props.cardWidth}`}>
             <i className="item__img-wrapper">
-                <img src={ props.image } />
+                <img src={ props.image } alt="app-img" />
             </i>
             <p className="item__title">{ props.title }</p>
             <p className="item__category">{props.category }</p>

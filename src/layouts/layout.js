@@ -3,7 +3,6 @@ import { Grid, Container } from 'semantic-ui-react'
 import { Sidebar } from "../components/components.index";
 
 const Layout = (props) => {
-    console.log('children', props);
     return (
         <div>
             <Container> 
@@ -28,7 +27,7 @@ const Layout = (props) => {
                         <Grid.Column width={13}>              
                             {props.children}
                         </Grid.Column>  
-                        <Grid.Column width={3}>              
+                        <Grid.Column className="layout__sidebar" width={3}>              
                             <Sidebar />
                         </Grid.Column>  
                     </Grid.Row>

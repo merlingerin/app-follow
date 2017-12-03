@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchApps, changeType } from '../actions/actions';
-import { Grid, Container } from 'semantic-ui-react'
+import { 
+    fetchApps, 
+    changeType,
+    fetchCollections
+ } from '../actions/actions';
+import { Grid } from 'semantic-ui-react'
 import { 
     MainCarusel, 
     ToggleTypeButton, 
-    CategoryComponent
+    CategoryComponent,
+    BannersContainer
 } from '../components/components.index';
-import { changeDeviceType } from '../actions/actions';
 import Layout from '../layouts/layout';
 
 
@@ -22,12 +26,16 @@ class HomePage extends Component {
 
     componentDidMount() {
         this.props.fetchApps(this.state.type);
+        this.props.fetchCollections('banners');
+        
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({
-            type: nextProps.appState.deviceType
-        });
+        if(nextProps.appState.deviceType !== this.state.type) {
+            this.setState({
+                type: nextProps.appState.deviceType
+            });
+        }
     }
 
     onChangeType(type) {
@@ -36,15 +44,16 @@ class HomePage extends Component {
     }
 
     render() {
-        let freeApps,
-            paidApps;
+        let popularApps,
+            newApps;
+        let banners = this.props.appState.banners;
 
         if(this.props.appState.apps) {
-            freeApps = this.props.appState.apps.filter( (item, idx) => {
-                return +item.price === 0;
+            popularApps = this.props.appState.apps.filter( (item, idx) => {
+                return +item.rate > 3.5;
             });
-            paidApps = this.props.appState.apps.filter( (item, idx) => {
-                return +item.price > 0;
+            newApps = this.props.appState.apps.filter( (item, idx) => {
+                return +item.rate < 4;
             });
         }
         return (
@@ -56,14 +65,21 @@ class HomePage extends Component {
                         <Grid columns={1}>
                             <Grid.Row>
                                 <Grid.Column>
-                                    <CategoryComponent items={freeApps} title={'Free apps'} />
+                                    <CategoryComponent items={popularApps} title={'Popular apps'} />
                                 </Grid.Column>  
                             </Grid.Row>
                         </Grid>
                         <Grid columns={1}>
                             <Grid.Row>
                                 <Grid.Column>
-                                    <CategoryComponent items={paidApps} title={'Paid apps'} />
+                                    <CategoryComponent items={newApps} title={'New apps'} />
+                                </Grid.Column>  
+                            </Grid.Row>
+                        </Grid>
+                        <Grid columns={1}>
+                            <Grid.Row>
+                                <Grid.Column>
+                                    <BannersContainer items={banners} title={'Popular Collections'} />
                                 </Grid.Column>  
                             </Grid.Row>
                         </Grid>
@@ -79,7 +95,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     fetchApps,
-    changeType
+    changeType,
+    fetchCollections
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

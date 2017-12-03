@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Slider from 'react-slick';
 import Slide1 from '../../assets/img/slide1.jpg';
 import Slide2 from '../../assets/img/slide2.jpg';
@@ -21,11 +21,11 @@ const MainCarusel = () => {
     return ( 
         <div className="carusel carusel--main">
             <Slider {...settings}>
-                <div><img src={Slide1} /></div>
-                <div><img src={Slide2} /></div>
-                <div><img src={Slide3} /></div>
-                <div><img src={Slide4} /></div>
-                <div><img src={Slide2} /></div>
+                <div><img src={Slide1} alt="slide1" /></div>
+                <div><img src={Slide2} alt="slide1" /></div>
+                <div><img src={Slide3} alt="slide1" /></div>
+                <div><img src={Slide4} alt="slide1" /></div>
+                <div><img src={Slide2} alt="slide1" /></div>
             </Slider>
         </div>
     );
